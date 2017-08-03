@@ -12,6 +12,7 @@
 /logs
 /activemq-data
 /KahaDB
+/*.iml
 
 /build
 /authapp-api/build
