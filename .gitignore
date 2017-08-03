@@ -1,0 +1,23 @@
+# Ignore these files
+/.gradle
+/out
+/gradle
+/.idea
+/.DS_Store
+/*/*/*/*/*/.DS_Store
+/*/*/*/*/*/*/.DS_Store
+/gradlew
+/gradlew.bat
+/classes
+/logs
+/activemq-data
+/KahaDB
+
+/build
+/authapp-api/build
+/authapp-api/auth/build
+/authapp-core/build
+/authapp-core/src/main/generated
+/authapp-utils/build
+/authapp-utils/core/build
+/authapp-utils/authapp-data-load/build

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+        xmlns="http://www.springframework.org/schema/integration"
+        xmlns:int-xml="http://www.springframework.org/schema/integration/xml"
+        xmlns:int-http="http://www.springframework.org/schema/integration/http"
+        xmlns:beans="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:int="http://www.springframework.org/schema/integration"
+        xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+						   http://www.springframework.org/schema/beans/spring-beans.xsd
+						   http://www.springframework.org/schema/context
+						   http://www.springframework.org/schema/context/spring-context.xsd
+						   http://www.springframework.org/schema/integration
+						   http://www.springframework.org/schema/integration/spring-integration.xsd
+						   http://www.springframework.org/schema/integration/http
+						   http://www.springframework.org/schema/integration/http/spring-integration-http.xsd
+						   http://www.springframework.org/schema/integration/xml
+						   http://www.springframework.org/schema/integration/xml/spring-integration-xml.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- Logging of request/response -->
+
+    <logging-channel-adapter id="logger" level="INFO"/>
+
+    <channel id="authInput">
+        <interceptors>
+            <wire-tap id="authServiceInput" channel="logger"/>
+        </interceptors>
+    </channel>
+
+    <channel id="authRequest">
+        <interceptors>
+            <wire-tap id="authServiceRequest" channel="logger"/>
+        </interceptors>
+    </channel>
+
+    <channel id="authRefresh">
+        <interceptors>
+            <wire-tap id="authServiceRefresh" channel="logger"/>
+        </interceptors>
+    </channel>
+    <channel id="authUser">
+        <interceptors>
+            <wire-tap id="authServiceUser" channel="logger"/>
+        </interceptors>
+    </channel>
+    <channel id="authRegisterTransform">
+        <interceptors>
+            <wire-tap id="authServiceRegisterTransform" channel="logger"/>
+        </interceptors>
+    </channel>
+    <channel id="authRegisterFrontTransform">
+        <interceptors>
+            <wire-tap id="authServiceRegisterFrontTransform" channel="logger"/>
+        </interceptors>
+    </channel>
+    <channel id="authRegisteredFront">
+        <interceptors>
+            <wire-tap id="authServiceRegisteredFront" channel="logger"/>
+        </interceptors>
+    </channel>
+    <channel id="authRegistered">
+        <interceptors>
+            <wire-tap id="authServiceRegistered" channel="logger"/>
+        </interceptors>
+    </channel>
+    <channel id="deleteUser">
+        <interceptors>
+            <wire-tap id="deleteUserService" channel="logger"/>
+        </interceptors>
+    </channel>
+    <channel id="deleteUserTransform">
+        <interceptors>
+            <wire-tap id="deleteUserTransformService" channel="logger"/>
+        </interceptors>
+    </channel>
+
+    <context:component-scan base-package="com.norulesweb.authapp.api"/>
+
+    <context:component-scan base-package="com.norulesweb.authapp.core"/>
+
+    <beans:bean id="authAppService" class="com.norulesweb.authapp.api.security.controller.AuthAppService"/>
+
+    <!-- HTTP inbound gateway will listen for requests -->
+    <int-http:inbound-gateway
+            request-channel="deleteUser"
+            supported-methods="POST"
+            reply-timeout="30000"
+            path="/deleteuser"/>
+    <json-to-object-transformer type="com.norulesweb.authapp.core.service.request.DeleteRequest"
+                                input-channel="deleteUser"
+                                output-channel="deleteUserTransform"/>
+    <transformer
+            input-channel="deleteUserTransform"
+            ref="authAppService"
+            method="deleteUser"/>
+
+    <int-http:inbound-gateway
+            request-channel="authRegisterFrontTransform"
+            supported-methods="POST"
+            reply-timeout="30000"
+            path="/registerfrontend"/>
+    <json-to-object-transformer type="com.norulesweb.authapp.core.service.request.RegistrationRequest"
+                                input-channel="authRegisterFrontTransform"
+                                output-channel="authRegisteredFront"/>
+    <transformer
+            input-channel="authRegisteredFront"
+            ref="authAppService"
+            method="registerFrontEndUser"/>
+
+    <int-http:inbound-gateway
+            request-channel="authRegisterTransform"
+            supported-methods="POST"
+            reply-timeout="30000"
+            path="/register"/>
+    <json-to-object-transformer type="com.norulesweb.authapp.core.service.request.RegistrationRequest"
+                                input-channel="authRegisterTransform"
+                                output-channel="authRegistered"/>
+    <transformer
+            input-channel="authRegistered"
+            ref="authAppService"
+            method="registerNewUser"/>
+
+    <int-http:inbound-gateway
+            request-channel="authUser"
+            supported-methods="GET"
+            reply-timeout="30000"
+            path="/user"/>
+    <transformer
+            input-channel="authUser"
+            ref="authAppService"
+            method="getAuthenticatedUser"/>
+
+    <int-http:inbound-gateway
+            request-channel="authRefresh"
+            supported-methods="GET"
+            reply-timeout="30000"
+            path="/refresh"/>
+    <transformer
+            input-channel="authRefresh"
+            ref="authAppService"
+            method="refreshAndGetAuthenticationToken"/>
+
+    <int-http:inbound-gateway
+            request-channel="authInput"
+            supported-methods="GET"
+            reply-timeout="30000"
+            path="/auth">
+    </int-http:inbound-gateway>
+    <transformer
+        input-channel="authInput"
+        ref="authAppService"
+        method="createAuthenticationToken"/>
+
+    </beans:beans>
