@@ -32,7 +32,7 @@ public class User extends ModelBase {
 
 	private List<Authority> authorities;
 
-	public User() { }
+	public User() {	}
 
 	public User(User user){
 		super(user);
