@@ -46,7 +46,11 @@ public class Venue extends ModelBase {
     }
 
     @OneToOne(fetch = FetchType.EAGER)
-    @Column(name = "ADDRESS")
+    @JoinTable(
+            name = "VENUE_ADDRESS",
+            joinColumns = {@JoinColumn(name = "VENUE_ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ID")}
+    )
     public Address getAddress() {
         return address;
     }

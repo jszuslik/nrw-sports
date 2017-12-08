@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd" logicalFilePath="db/releases/0.0.2/changelog.xml">
+    <changeSet author="jszuslik (generated)" id="1512764605819-1">
+        <createTable tableName="address">
+            <column autoIncrement="true" name="ID" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="ADDRESS_1" type="VARCHAR(255)"/>
+            <column name="ADDRESS_2" type="VARCHAR(255)"/>
+            <column name="CITY" type="VARCHAR(255)"/>
+            <column name="COUNTRY" type="VARCHAR(255)"/>
+            <column name="POSTAL_CODE" type="VARCHAR(255)"/>
+            <column name="STATE" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-2">
+        <createTable tableName="authorities">
+            <column autoIncrement="true" name="ID" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-3">
+        <createTable tableName="coach_athlete">
+            <column name="COACH_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ATHLETE_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-4">
+        <createTable tableName="league_address">
+            <column name="ADDRESS_ID" type="BIGINT"/>
+            <column name="LEAGUE_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-5">
+        <createTable tableName="league_teams">
+            <column name="LEAGUE_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TEAM_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-6">
+        <createTable tableName="league_venues">
+            <column name="LEAGUE_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VENUE_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-7">
+        <createTable tableName="leagues">
+            <column autoIncrement="true" name="ID" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="END_DATE" type="datetime(6)"/>
+            <column name="LEAGUE_NAME" type="VARCHAR(255)"/>
+            <column name="START_DATE" type="datetime(6)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-8">
+        <createTable tableName="parent_athlete">
+            <column name="PARENT_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ATHLETE_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-9">
+        <createTable tableName="team">
+            <column autoIncrement="true" name="ID" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="TEAM_NAME" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-10">
+        <createTable tableName="team_athlete">
+            <column name="TEAM_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ATHLETE_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-11">
+        <createTable tableName="user">
+            <column name="DTYPE" type="VARCHAR(31)">
+                <constraints nullable="false"/>
+            </column>
+            <column autoIncrement="true" name="ID" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="EMAIL" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ENABLED" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIRSTNAME" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LASTPASSWORDRESETDATE" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LASTNAME" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USERNAME" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AGE" type="INT"/>
+            <column name="BIRTH_DATE" type="datetime(6)"/>
+            <column name="IMAGE_URL" type="VARCHAR(255)"/>
+            <column name="USER_TYPE" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-12">
+        <createTable tableName="user_authority">
+            <column name="USER_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AUTHORITY_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-13">
+        <createTable tableName="venue_address">
+            <column name="ADDRESS_ID" type="BIGINT"/>
+            <column name="VENUE_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-14">
+        <createTable tableName="venues">
+            <column autoIncrement="true" name="ID" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="EMAIL" type="VARCHAR(255)"/>
+            <column name="VENUE_NAME" type="VARCHAR(255)"/>
+            <column name="PHONE" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-15">
+        <addPrimaryKey columnNames="COACH_ID, ATHLETE_ID" constraintName="PRIMARY" tableName="coach_athlete"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-16">
+        <addPrimaryKey columnNames="LEAGUE_ID" constraintName="PRIMARY" tableName="league_address"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-17">
+        <addPrimaryKey columnNames="LEAGUE_ID, TEAM_ID" constraintName="PRIMARY" tableName="league_teams"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-18">
+        <addPrimaryKey columnNames="LEAGUE_ID, VENUE_ID" constraintName="PRIMARY" tableName="league_venues"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-19">
+        <addPrimaryKey columnNames="PARENT_ID, ATHLETE_ID" constraintName="PRIMARY" tableName="parent_athlete"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-20">
+        <addPrimaryKey columnNames="TEAM_ID, ATHLETE_ID" constraintName="PRIMARY" tableName="team_athlete"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-21">
+        <addPrimaryKey columnNames="VENUE_ID" constraintName="PRIMARY" tableName="venue_address"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-22">
+        <addUniqueConstraint columnNames="ATHLETE_ID" constraintName="UK_37ux9jgbw6w9294my0q6e8veh" tableName="parent_athlete"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-23">
+        <addUniqueConstraint columnNames="VENUE_ID" constraintName="UK_3kt1s5de2p3ku6kn5s7rdw54n" tableName="league_venues"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-24">
+        <addUniqueConstraint columnNames="TEAM_ID" constraintName="UK_9h18g0mgwfjv6r6lidb2e40w4" tableName="league_teams"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-25">
+        <addUniqueConstraint columnNames="USERNAME" constraintName="UK_lb5yrvw2c22im784wwrpwuq06" tableName="user"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-26">
+        <addUniqueConstraint columnNames="ATHLETE_ID" constraintName="UK_mfnewxt91bpilm281wljjdyfg" tableName="coach_athlete"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-27">
+        <addUniqueConstraint columnNames="ATHLETE_ID" constraintName="UK_sbb9oot255xt7r2tb8p9mw1fw" tableName="team_athlete"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-28">
+        <createIndex indexName="FK_9faa6irp4t6owi2ijssv2b0r9" tableName="league_address">
+            <column name="ADDRESS_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-29">
+        <createIndex indexName="FK_d4a1nk5jc6u9oxhv9achhdgjg" tableName="venue_address">
+            <column name="ADDRESS_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-30">
+        <createIndex indexName="FK_dyo9anhb75hbjut13e8uovw2s" tableName="user_authority">
+            <column name="AUTHORITY_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-31">
+        <createIndex indexName="FK_jbm4yrlayhtksry4mwk0e47ls" tableName="user_authority">
+            <column name="USER_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-32">
+        <addForeignKeyConstraint baseColumnNames="ATHLETE_ID" baseTableName="parent_athlete" constraintName="FK_37ux9jgbw6w9294my0q6e8veh" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="user"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-33">
+        <addForeignKeyConstraint baseColumnNames="VENUE_ID" baseTableName="league_venues" constraintName="FK_3kt1s5de2p3ku6kn5s7rdw54n" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="venues"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-34">
+        <addForeignKeyConstraint baseColumnNames="TEAM_ID" baseTableName="team_athlete" constraintName="FK_6ok8q0hf2gv2nba0pgqutgnk0" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="team"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-35">
+        <addForeignKeyConstraint baseColumnNames="LEAGUE_ID" baseTableName="league_address" constraintName="FK_7miioloayolky3e2cp2meh964" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="leagues"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-36">
+        <addForeignKeyConstraint baseColumnNames="LEAGUE_ID" baseTableName="league_venues" constraintName="FK_8uymbjpmhhwcg2q6tir4sfuel" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="leagues"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-37">
+        <addForeignKeyConstraint baseColumnNames="ADDRESS_ID" baseTableName="league_address" constraintName="FK_9faa6irp4t6owi2ijssv2b0r9" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="address"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-38">
+        <addForeignKeyConstraint baseColumnNames="TEAM_ID" baseTableName="league_teams" constraintName="FK_9h18g0mgwfjv6r6lidb2e40w4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="team"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-39">
+        <addForeignKeyConstraint baseColumnNames="PARENT_ID" baseTableName="parent_athlete" constraintName="FK_9k827t9u3jlkl6gdkxuatined" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="user"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-40">
+        <addForeignKeyConstraint baseColumnNames="COACH_ID" baseTableName="coach_athlete" constraintName="FK_ap3qp5uufjne71xdyqbw9lm2q" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="user"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-41">
+        <addForeignKeyConstraint baseColumnNames="ADDRESS_ID" baseTableName="venue_address" constraintName="FK_d4a1nk5jc6u9oxhv9achhdgjg" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="address"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-42">
+        <addForeignKeyConstraint baseColumnNames="AUTHORITY_ID" baseTableName="user_authority" constraintName="FK_dyo9anhb75hbjut13e8uovw2s" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="authorities"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-43">
+        <addForeignKeyConstraint baseColumnNames="VENUE_ID" baseTableName="venue_address" constraintName="FK_ff0j39mvtka83px8jjh2ew6iv" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="venues"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-44">
+        <addForeignKeyConstraint baseColumnNames="USER_ID" baseTableName="user_authority" constraintName="FK_jbm4yrlayhtksry4mwk0e47ls" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="user"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-45">
+        <addForeignKeyConstraint baseColumnNames="ATHLETE_ID" baseTableName="coach_athlete" constraintName="FK_mfnewxt91bpilm281wljjdyfg" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="user"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-46">
+        <addForeignKeyConstraint baseColumnNames="LEAGUE_ID" baseTableName="league_teams" constraintName="FK_pgojd3v6d3opcn2ji6bhptw5l" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="leagues"/>
+    </changeSet>
+    <changeSet author="jszuslik (generated)" id="1512764605819-47">
+        <addForeignKeyConstraint baseColumnNames="ATHLETE_ID" baseTableName="team_athlete" constraintName="FK_sbb9oot255xt7r2tb8p9mw1fw" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="user"/>
+    </changeSet>
+</databaseChangeLog>
